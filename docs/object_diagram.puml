@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+
+object "board:Board" as BoardInstance {
+size_of_board = 10
+mine_probability = 0.2
+array = [[0, 1, 2, ...] ... ]
+amount_of_mines = 34
+amount_of_bombs = 2
+assigned_test_features = [[[5.1, 3.5, 1.4, 0.2], [6.9, 3.1, 5.4, 2.1], ...], ...]
+}
+object "_classifier:GeneralClassifier" as GeneralClassifierInstance {
+classifier_name = "KNN"
+random_state = 42
+classifier = KNeighborsClassifier()
+}
+object "simulation:Simulation" as SimulationInstance {
+board = Board(10, 0.2)
+type_of_path = "Horizontal"
+_classifier = ClassifierGeneral("KNN", 42)
+amount_of_soldiers = 100
+survivors = 100
+_special_soldiers = [heavy1, sapper1, heavy2, heavy3, ...]
+_good_predictions = 0
+disarmed_mines = 0
+disarmed_bombs = 0
+random_events_log = []
+accuracy = -1
+found_kits = 0
+disarmed_locations = set()
+}
+
+object "heavy1:Heavy" as Heavy1Instance {
+health = 100
+armor = 100
+}
+object "sapper1:Sapper" as Sapper1Instance {
+health = 100
+disarming_kits = 1
+}
+object "heavy2:Heavy" as Heavy2Instance {
+health = 100
+armor = 100
+}
+object "heavy3:Heavy" as Heavy3Instance {
+health = 100
+armor = 100
+}
+
+' Relacje pomiędzy obiektami
+SimulationInstance -- BoardInstance : contains
+SimulationInstance -- GeneralClassifierInstance : contains
+SimulationInstance -- Heavy1Instance : contains
+SimulationInstance -- Sapper1Instance : contains
+SimulationInstance -- Heavy2Instance : contains
+SimulationInstance -- Heavy3Instance : contains
+
+
+
+@enduml

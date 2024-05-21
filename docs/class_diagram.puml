@@ -1,0 +1,88 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+abstract class Soldier {
+{abstract} react_to_mine() : void
+{abstract} react_to_bomb() : void
+health : int
+}
+
+class Sapper {
++react_to_mine() : void
++react_to_bomb() : void
++add_kit()
++health : int
++disarming_kits : int
+}
+
+class Heavy {
++react_to_mine() : void
++react_to_bomb() : void
++react_to_enemy(): void
++armor : int
+}
+
+class Troops {
+{static} +create_soldiers() : list[Heavy | Sapper]]
+}
+
+class ClassifierGeneral {
++classifier_name : str
++random_state : int
++classifier : Any
+<<dynamic>>
+-_select_classifier() : void
++train() : void
++predict() : int
+}
+
+class Board {
++size_of_board : int
++mine_probability : float
++array : list[list[int]]
++amount_of_mines : int
++amount_of_bombs : int
++assigned_test_features : np.ndarray
+-_generate_board() : list[list[int]]
+-_count_mines() : int
+-_count_bombs() : int
+-_assign_iris_features : np.ndarray
+
+}
+
+class Simulation {
++board : Board
++type_of_path : str
++amount_of_soldiers : int
++survivors : int
++disarmed_mines : int
++disarmed_bombs : int
++random_event_log : list[str]
++accuracy : float
++found_kits : int
++disarmed_locations : set
+-_special_soldiers : list[Heavy | Sapper]
+-_good_predictions : int
+-_classifier : ClassifierGeneral
++simulate() : void
+-_manage_soldiers() : void
+-_update_game_stats() : void
+-_horizontal_path() : void
+-_diagonal_path() : void
+-_random_event() : void
+
+}
+
+Soldier <|-- Heavy : extension
+Soldier <|-- Sapper : extension
+Troops *-- Heavy : composition
+Troops *-- Sapper : composition
+Simulation *-- Board : composition
+Simulation *-- ClassifierGeneral : composition
+Simulation o-- Troops : aggregation
+Simulation ..> Heavy : usage
+Simulation ..> Sapper : usage
+
+
+@enduml

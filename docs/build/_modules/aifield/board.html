@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aifield.board &#8212; AI Field Commander 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for aifield.board</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+
+<div class="viewcode-block" id="Board">
+<a class="viewcode-back" href="../../aifield.html#aifield.board.Board">[docs]</a>
+<span class="k">class</span> <span class="nc">Board</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to represent a game board with mines and bombs, which also assigns features from the Iris dataset.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        size_of_board (int): The size of the board (size x size).</span>
+<span class="sd">        mine_probability (float): The probability of a cell containing a mine or bomb.</span>
+<span class="sd">        array (np.ndarray): The generated board array with mines and bombs.</span>
+<span class="sd">        amount_of_mines (int): The total number of mines on the board.</span>
+<span class="sd">        amount_of_bombs (int): The total number of bombs on the board.</span>
+<span class="sd">        assigned_test_features (np.ndarray): The features from the Iris dataset assigned to the board cells.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        The Iris dataset from scikit-learn is used to assign features to the board cells. More information about the</span>
+<span class="sd">        Iris dataset can be found at:</span>
+<span class="sd">        https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size_of_board</span><span class="p">,</span> <span class="n">mine_probability</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the Board with the specified size and mine probability.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            size_of_board (int): The size of the board (size x size).</span>
+<span class="sd">            mine_probability (float): The probability of a cell containing a mine or bomb.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span> <span class="o">=</span> <span class="n">size_of_board</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mine_probability</span> <span class="o">=</span> <span class="n">mine_probability</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_board</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amount_of_mines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count_mines</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amount_of_bombs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count_bombs</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assigned_test_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assign_iris_features</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_generate_board</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates the board with mines and bombs based on the mine probability.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: A 2D array representing the board, where 0 indicates an empty cell,</span>
+<span class="sd">                        1 indicates a mine, and 2 indicates a bomb.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mine_probability</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_count_mines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Counts the number of mines on the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The total number of mines on the board.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">_count_bombs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Counts the number of bombs on the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The total number of bombs on the board.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">count</span>
+
+    <span class="k">def</span> <span class="nf">_assign_iris_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Assigns features from the Iris dataset to the cells on the board based on the cell type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: A 3D array where each cell contains a feature vector from the Iris dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+
+        <span class="n">data_label_0</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">data_label_1</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">data_label_2</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_of_board</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_label_0</span><span class="p">))</span>
+                    <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data_label_0</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_label_1</span><span class="p">))</span>
+                    <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data_label_1</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_label_2</span><span class="p">))</span>
+                    <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data_label_2</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">features</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">AI Field Commander</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Jakub Buszyński.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
