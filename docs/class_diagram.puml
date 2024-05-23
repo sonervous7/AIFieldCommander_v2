@@ -8,6 +8,20 @@ abstract class Soldier {
 health : int
 }
 
+class DataReader {
+{static} X : np.ndarray
+{static} y : np.ndarray
+{static} X_train : np.ndarray
+{static} X_test : np.ndarray
+{static} y_train : np.ndarray
+{static} y_test : np.ndarray
+{static} +initialize(file_path : str ,test_size : float, random_state : int) : void
+{static} +load_augmented_data(file_path : str) : void
+{static} +split_data(test_size : float, random_state : int)
+{static} +get_train_data() : tuple
+{static} +get_test_data() : tuple
+}
+
 class Sapper {
 +react_to_mine() : void
 +react_to_bomb() : void
@@ -83,6 +97,8 @@ Simulation *-- ClassifierGeneral : composition
 Simulation o-- Troops : aggregation
 Simulation ..> Heavy : usage
 Simulation ..> Sapper : usage
+Board ..> DataReader : dependency
+ClassifierGeneral ..> DataReader : dependency
 
 
 @enduml

@@ -7,6 +7,7 @@
   <title>src &mdash; AI Field Commander 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -100,24 +101,46 @@
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.classifier_general.ClassifierGeneral.classifier_name"><code class="docutils literal notranslate"><span class="pre">ClassifierGeneral.classifier_name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.classifier_general.ClassifierGeneral.random_state"><code class="docutils literal notranslate"><span class="pre">ClassifierGeneral.random_state</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.classifier_general.ClassifierGeneral.classifier"><code class="docutils literal notranslate"><span class="pre">ClassifierGeneral.classifier</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.classifier_general.ClassifierGeneral.predict"><code class="docutils literal notranslate"><span class="pre">ClassifierGeneral.predict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.classifier_general.ClassifierGeneral.train"><code class="docutils literal notranslate"><span class="pre">ClassifierGeneral.train()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.classifier_general.ClassifierGeneral.predict"><code class="docutils literal notranslate"><span class="pre">ClassifierGeneral.predict()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="aifield.html#aifield-gui-module">aifield.gui module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aifield.html#aifield-simulation-module">aifield.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aifield.html#module-aifield.gui">aifield.gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aifield.html#module-aifield.simulation">aifield.simulation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation"><code class="docutils literal notranslate"><span class="pre">Simulation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.board"><code class="docutils literal notranslate"><span class="pre">Simulation.board</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.type_of_path"><code class="docutils literal notranslate"><span class="pre">Simulation.type_of_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation._classifier"><code class="docutils literal notranslate"><span class="pre">Simulation._classifier</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.amount_of_soldiers"><code class="docutils literal notranslate"><span class="pre">Simulation.amount_of_soldiers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.survivors"><code class="docutils literal notranslate"><span class="pre">Simulation.survivors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation._special_soldiers"><code class="docutils literal notranslate"><span class="pre">Simulation._special_soldiers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation._good_predictions"><code class="docutils literal notranslate"><span class="pre">Simulation._good_predictions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.disarmed_mines"><code class="docutils literal notranslate"><span class="pre">Simulation.disarmed_mines</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.disarmed_bombs"><code class="docutils literal notranslate"><span class="pre">Simulation.disarmed_bombs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.random_events_log"><code class="docutils literal notranslate"><span class="pre">Simulation.random_events_log</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.accuracy"><code class="docutils literal notranslate"><span class="pre">Simulation.accuracy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.found_kits"><code class="docutils literal notranslate"><span class="pre">Simulation.found_kits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.disarmed_locations"><code class="docutils literal notranslate"><span class="pre">Simulation.disarmed_locations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.simulation.Simulation.simulate"><code class="docutils literal notranslate"><span class="pre">Simulation.simulate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="aifield.html#module-aifield.soldier">aifield.soldier module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier"><code class="docutils literal notranslate"><span class="pre">Soldier</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier.health"><code class="docutils literal notranslate"><span class="pre">Soldier.health</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier.react_to_mine"><code class="docutils literal notranslate"><span class="pre">Soldier.react_to_mine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier.react_to_bomb"><code class="docutils literal notranslate"><span class="pre">Soldier.react_to_bomb()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="aifield.html#aifield.soldier.Heavy"><code class="docutils literal notranslate"><span class="pre">Heavy</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Heavy.health"><code class="docutils literal notranslate"><span class="pre">Heavy.health</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Heavy.armor"><code class="docutils literal notranslate"><span class="pre">Heavy.armor</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Heavy.react_to_mine"><code class="docutils literal notranslate"><span class="pre">Heavy.react_to_mine()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Heavy.react_to_bomb"><code class="docutils literal notranslate"><span class="pre">Heavy.react_to_bomb()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Heavy.react_to_enemy"><code class="docutils literal notranslate"><span class="pre">Heavy.react_to_enemy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id0"><code class="docutils literal notranslate"><span class="pre">Heavy.react_to_bomb()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id1"><code class="docutils literal notranslate"><span class="pre">Heavy.react_to_enemy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id2"><code class="docutils literal notranslate"><span class="pre">Heavy.react_to_mine()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="aifield.html#aifield.soldier.Sapper"><code class="docutils literal notranslate"><span class="pre">Sapper</span></code></a><ul>
@@ -126,17 +149,6 @@
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Sapper.react_to_mine"><code class="docutils literal notranslate"><span class="pre">Sapper.react_to_mine()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Sapper.react_to_bomb"><code class="docutils literal notranslate"><span class="pre">Sapper.react_to_bomb()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Sapper.add_kit"><code class="docutils literal notranslate"><span class="pre">Sapper.add_kit()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id3"><code class="docutils literal notranslate"><span class="pre">Sapper.add_kit()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id4"><code class="docutils literal notranslate"><span class="pre">Sapper.react_to_bomb()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id5"><code class="docutils literal notranslate"><span class="pre">Sapper.react_to_mine()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier"><code class="docutils literal notranslate"><span class="pre">Soldier</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier.health"><code class="docutils literal notranslate"><span class="pre">Soldier.health</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier.react_to_mine"><code class="docutils literal notranslate"><span class="pre">Soldier.react_to_mine()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#aifield.soldier.Soldier.react_to_bomb"><code class="docutils literal notranslate"><span class="pre">Soldier.react_to_bomb()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id6"><code class="docutils literal notranslate"><span class="pre">Soldier.react_to_bomb()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="aifield.html#id7"><code class="docutils literal notranslate"><span class="pre">Soldier.react_to_mine()</span></code></a></li>
 </ul>
 </li>
 </ul>

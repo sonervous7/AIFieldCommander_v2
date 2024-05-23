@@ -7,6 +7,7 @@
   <title>aifield package &mdash; AI Field Commander 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
       <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,9 +21,7 @@
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="main module" href="main.html" />
-    <link rel="prev" title="src" href="modules.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,36 +44,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">aifield package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-aifield.board">aifield.board module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#aifield.board.Board"><code class="docutils literal notranslate"><span class="pre">Board</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-aifield.classifier_general">aifield.classifier_general module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#aifield.classifier_general.ClassifierGeneral"><code class="docutils literal notranslate"><span class="pre">ClassifierGeneral</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#aifield-gui-module">aifield.gui module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#aifield-simulation-module">aifield.simulation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-aifield.soldier">aifield.soldier module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#aifield.soldier.Heavy"><code class="docutils literal notranslate"><span class="pre">Heavy</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#aifield.soldier.Sapper"><code class="docutils literal notranslate"><span class="pre">Sapper</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#aifield.soldier.Soldier"><code class="docutils literal notranslate"><span class="pre">Soldier</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-aifield.troops">aifield.troops module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#aifield.troops.Troops"><code class="docutils literal notranslate"><span class="pre">Troops</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-aifield">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
 </ul>
 
         </div>
@@ -91,7 +62,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
       <li class="breadcrumb-item active">aifield package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/aifield.rst.txt" rel="nofollow"> View page source</a>
@@ -236,6 +206,12 @@ machine learning classifiers from scikit-learn.</p>
 <a class="reference external" href="https://scikit-learn.org/stable/supervised_learning.html">https://scikit-learn.org/stable/supervised_learning.html</a></p>
 </div>
 <dl class="py method">
+<dt class="sig sig-object py" id="aifield.classifier_general.ClassifierGeneral.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/classifier_general.html#ClassifierGeneral.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.classifier_general.ClassifierGeneral.train" title="Link to this definition"></a></dt>
+<dd><p>Trains the classifier using the augmented Iris dataset loaded from CSV.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="aifield.classifier_general.ClassifierGeneral.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/classifier_general.html#ClassifierGeneral.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.classifier_general.ClassifierGeneral.predict" title="Link to this definition"></a></dt>
 <dd><p>Predicts the class label for a given set of features.</p>
@@ -252,23 +228,203 @@ machine learning classifiers from scikit-learn.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+</section>
+<section id="module-aifield.gui">
+<span id="aifield-gui-module"></span><h2>aifield.gui module<a class="headerlink" href="#module-aifield.gui" title="Link to this heading"></a></h2>
+</section>
+<section id="module-aifield.simulation">
+<span id="aifield-simulation-module"></span><h2>aifield.simulation module<a class="headerlink" href="#module-aifield.simulation" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aifield.simulation.</span></span><span class="sig-name descname"><span class="pre">Simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size_of_board</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mine_probability</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount_of_soldiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/simulation.html#Simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.simulation.Simulation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to simulate the movement and actions of soldiers on a board with mines and bombs.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.board">
+<span class="sig-name descname"><span class="pre">board</span></span><a class="headerlink" href="#aifield.simulation.Simulation.board" title="Link to this definition"></a></dt>
+<dd><p>The game board with mines and bombs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#aifield.board.Board" title="aifield.board.Board">Board</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.type_of_path">
+<span class="sig-name descname"><span class="pre">type_of_path</span></span><a class="headerlink" href="#aifield.simulation.Simulation.type_of_path" title="Link to this definition"></a></dt>
+<dd><p>The type of path soldiers take (‘Horizontal’ or ‘Diagonal’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation._classifier">
+<span class="sig-name descname"><span class="pre">_classifier</span></span><a class="headerlink" href="#aifield.simulation.Simulation._classifier" title="Link to this definition"></a></dt>
+<dd><p>The classifier used to predict the presence of mines and bombs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#aifield.classifier_general.ClassifierGeneral" title="aifield.classifier_general.ClassifierGeneral">ClassifierGeneral</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.amount_of_soldiers">
+<span class="sig-name descname"><span class="pre">amount_of_soldiers</span></span><a class="headerlink" href="#aifield.simulation.Simulation.amount_of_soldiers" title="Link to this definition"></a></dt>
+<dd><p>The initial number of soldiers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.survivors">
+<span class="sig-name descname"><span class="pre">survivors</span></span><a class="headerlink" href="#aifield.simulation.Simulation.survivors" title="Link to this definition"></a></dt>
+<dd><p>The current number of surviving soldiers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation._special_soldiers">
+<span class="sig-name descname"><span class="pre">_special_soldiers</span></span><a class="headerlink" href="#aifield.simulation.Simulation._special_soldiers" title="Link to this definition"></a></dt>
+<dd><p>A list of special soldiers (Heavy and Sapper).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation._good_predictions">
+<span class="sig-name descname"><span class="pre">_good_predictions</span></span><a class="headerlink" href="#aifield.simulation.Simulation._good_predictions" title="Link to this definition"></a></dt>
+<dd><p>The number of correct predictions made by the classifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.disarmed_mines">
+<span class="sig-name descname"><span class="pre">disarmed_mines</span></span><a class="headerlink" href="#aifield.simulation.Simulation.disarmed_mines" title="Link to this definition"></a></dt>
+<dd><p>The number of mines disarmed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.disarmed_bombs">
+<span class="sig-name descname"><span class="pre">disarmed_bombs</span></span><a class="headerlink" href="#aifield.simulation.Simulation.disarmed_bombs" title="Link to this definition"></a></dt>
+<dd><p>The number of bombs disarmed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.random_events_log">
+<span class="sig-name descname"><span class="pre">random_events_log</span></span><a class="headerlink" href="#aifield.simulation.Simulation.random_events_log" title="Link to this definition"></a></dt>
+<dd><p>A log of random events that occurred during the simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.accuracy">
+<span class="sig-name descname"><span class="pre">accuracy</span></span><a class="headerlink" href="#aifield.simulation.Simulation.accuracy" title="Link to this definition"></a></dt>
+<dd><p>The accuracy of the classifier’s predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.found_kits">
+<span class="sig-name descname"><span class="pre">found_kits</span></span><a class="headerlink" href="#aifield.simulation.Simulation.found_kits" title="Link to this definition"></a></dt>
+<dd><p>The number of disarming kits found during the simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.disarmed_locations">
+<span class="sig-name descname"><span class="pre">disarmed_locations</span></span><a class="headerlink" href="#aifield.simulation.Simulation.disarmed_locations" title="Link to this definition"></a></dt>
+<dd><p>The set of locations where mines and bombs were disarmed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>set</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="aifield.classifier_general.ClassifierGeneral.train">
-<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/classifier_general.html#ClassifierGeneral.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.classifier_general.ClassifierGeneral.train" title="Link to this definition"></a></dt>
-<dd><p>Trains the classifier using the Iris dataset from scikit-learn.</p>
+<dt class="sig sig-object py" id="aifield.simulation.Simulation.simulate">
+<span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/simulation.html#Simulation.simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.simulation.Simulation.simulate" title="Link to this definition"></a></dt>
+<dd><p>Runs the simulation and logs the results.</p>
 </dd></dl>
 
 </dd></dl>
 
-</section>
-<section id="aifield-gui-module">
-<h2>aifield.gui module<a class="headerlink" href="#aifield-gui-module" title="Link to this heading"></a></h2>
-</section>
-<section id="aifield-simulation-module">
-<h2>aifield.simulation module<a class="headerlink" href="#aifield-simulation-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-aifield.soldier">
 <span id="aifield-soldier-module"></span><h2>aifield.soldier module<a class="headerlink" href="#module-aifield.soldier" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="aifield.soldier.Soldier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aifield.soldier.</span></span><span class="sig-name descname"><span class="pre">Soldier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">health</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Soldier" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>An abstract base class representing a generic soldier with health.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aifield.soldier.Soldier.health">
+<span class="sig-name descname"><span class="pre">health</span></span><a class="headerlink" href="#aifield.soldier.Soldier.health" title="Link to this definition"></a></dt>
+<dd><p>The health of the soldier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aifield.soldier.Soldier.react_to_mine">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">react_to_mine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier.react_to_mine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Soldier.react_to_mine" title="Link to this definition"></a></dt>
+<dd><p>Defines the reaction to a mine. Must be implemented by subclasses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aifield.soldier.Soldier.react_to_bomb">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Soldier.react_to_bomb" title="Link to this definition"></a></dt>
+<dd><p>Defines the reaction to a bomb. Must be implemented by subclasses.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="aifield.soldier.Heavy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aifield.soldier.</span></span><span class="sig-name descname"><span class="pre">Heavy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">health</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Heavy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Heavy" title="Link to this definition"></a></dt>
@@ -299,37 +455,27 @@ machine learning classifiers from scikit-learn.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="aifield.soldier.Heavy.react_to_mine">
 <span class="sig-name descname"><span class="pre">react_to_mine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Heavy.react_to_mine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Heavy.react_to_mine" title="Link to this definition"></a></dt>
-<dd><p>Reacts to a mine by reducing armor or health.</p>
+<dd><p>Reacts to a mine by reducing armor if sufficient, otherwise reduces health.</p>
+<dl class="simple">
+<dt>Overrides:</dt><dd><p>Soldier.react_to_mine</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="aifield.soldier.Heavy.react_to_bomb">
 <span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Heavy.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Heavy.react_to_bomb" title="Link to this definition"></a></dt>
-<dd><p>Reacts to a bomb by reducing armor or health.</p>
+<dd><p>Reacts to a bomb by significantly reducing armor or health.</p>
+<dl class="simple">
+<dt>Overrides:</dt><dd><p>Soldier.react_to_mine</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="aifield.soldier.Heavy.react_to_enemy">
 <span class="sig-name descname"><span class="pre">react_to_enemy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Heavy.react_to_enemy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Heavy.react_to_enemy" title="Link to this definition"></a></dt>
 <dd><p>Reacts to an enemy by setting health and armor to 0.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Heavy.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
-<dd><p>Reacts to a bomb by significantly reducing armor or health.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">react_to_enemy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Heavy.react_to_enemy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
-<dd><p>Reacts to an enemy by setting health and armor to 0.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">react_to_mine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Heavy.react_to_mine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
-<dd><p>Reacts to a mine by reducing armor if sufficient, otherwise reduces health.</p>
 </dd></dl>
 
 </dd></dl>
@@ -364,79 +510,27 @@ machine learning classifiers from scikit-learn.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="aifield.soldier.Sapper.react_to_mine">
 <span class="sig-name descname"><span class="pre">react_to_mine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.react_to_mine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Sapper.react_to_mine" title="Link to this definition"></a></dt>
-<dd><p>Reacts to a mine by using a disarming kit or reducing health.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="aifield.soldier.Sapper.react_to_bomb">
-<span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Sapper.react_to_bomb" title="Link to this definition"></a></dt>
-<dd><p>Reacts to a bomb by using two disarming kits or reducing health.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="aifield.soldier.Sapper.add_kit">
-<span class="sig-name descname"><span class="pre">add_kit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.add_kit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Sapper.add_kit" title="Link to this definition"></a></dt>
-<dd><p>Adds a random number of disarming kits (1 or 2).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">add_kit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.add_kit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
-<dd><p>Adds a random number of disarming kits (1 or 2) to the sapper’s inventory.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
-<dd><p>Reacts to a bomb by using two disarming kits if available, otherwise reduces health to 0.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id5">
-<span class="sig-name descname"><span class="pre">react_to_mine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.react_to_mine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
 <dd><p>Reacts to a mine by using a disarming kit if available, otherwise reduces health to 0.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="aifield.soldier.Soldier">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aifield.soldier.</span></span><span class="sig-name descname"><span class="pre">Soldier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">health</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Soldier" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
-<p>An abstract base class representing a generic soldier with health.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="aifield.soldier.Soldier.health">
-<span class="sig-name descname"><span class="pre">health</span></span><a class="headerlink" href="#aifield.soldier.Soldier.health" title="Link to this definition"></a></dt>
-<dd><p>The health of the soldier.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
+<dl class="simple">
+<dt>Overrides:</dt><dd><p>Soldier.react_to_mine</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="aifield.soldier.Soldier.react_to_mine">
-<span class="sig-name descname"><span class="pre">react_to_mine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier.react_to_mine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Soldier.react_to_mine" title="Link to this definition"></a></dt>
-<dd><p>Abstract method to define the reaction to a mine.</p>
+<dt class="sig sig-object py" id="aifield.soldier.Sapper.react_to_bomb">
+<span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Sapper.react_to_bomb" title="Link to this definition"></a></dt>
+<dd><p>Reacts to a bomb by using two disarming kits if available, otherwise reduces health to 0.</p>
+<dl class="simple">
+<dt>Overrides:</dt><dd><p>Soldier.react_to_mine</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="aifield.soldier.Soldier.react_to_bomb">
-<span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Soldier.react_to_bomb" title="Link to this definition"></a></dt>
-<dd><p>Abstract method to define the reaction to a bomb.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id6">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">react_to_bomb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier.react_to_bomb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
-<dd><p>Defines the reaction to a bomb. Must be implemented by subclasses.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id7">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">react_to_mine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Soldier.react_to_mine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
-<dd><p>Defines the reaction to a mine. Must be implemented by subclasses.</p>
+<dt class="sig sig-object py" id="aifield.soldier.Sapper.add_kit">
+<span class="sig-name descname"><span class="pre">add_kit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aifield/soldier.html#Sapper.add_kit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aifield.soldier.Sapper.add_kit" title="Link to this definition"></a></dt>
+<dd><p>Adds a random number of disarming kits (1 or 2) to the sapper’s inventory.</p>
 </dd></dl>
 
 </dd></dl>
@@ -487,10 +581,7 @@ machine learning classifiers from scikit-learn.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="src" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="main.html" class="btn btn-neutral float-right" title="main module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
