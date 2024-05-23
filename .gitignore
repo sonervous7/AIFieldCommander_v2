@@ -1,6 +1,9 @@
 # .venv directory
 .venv/
 
+# .idea/ directory
+.idea/
+
 # Python cache
 __pycache__/
 *.pyc
