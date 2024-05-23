@@ -1,1 +1,17 @@
-/.venv/
+# .venv directory
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Sphinx build directory
+docs/build/
+docs/class_diagram.png
+docs/object_diagram.png
+
+# Misc
+*.log
+*.sqlite3
+.DS_Store

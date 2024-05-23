@@ -1,4 +1,4 @@
-from sklearn import datasets
+from aifield.data_reader import DataReader
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
@@ -23,6 +23,7 @@ class ClassifierGeneral:
         For more information about the classifiers, refer to the scikit-learn documentation:
         https://scikit-learn.org/stable/supervised_learning.html
     """
+
     def __init__(self, classifier_name, random_state):
         """
         Initializes the ClassifierGeneral with the specified classifier name and random state.
@@ -69,12 +70,14 @@ class ClassifierGeneral:
 
     def train(self):
         """
-        Trains the classifier using the Iris dataset from scikit-learn.
+        Trains the classifier using the augmented Iris dataset loaded from CSV.
         """
-        iris = datasets.load_iris()
-        X = iris.data
-        y = iris.target
-        self.classifier.fit(X, y)
+        X_train, y_train = DataReader.get_train_data()
+        self.classifier.fit(X_train, y_train)
+        # iris = datasets.load_iris()
+        # X = iris.data
+        # y = iris.target
+        # self.classifier.fit(X, y)
 
     def predict(self, features):
         """

@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn import datasets
+from aifield.data_reader import DataReader
 
 
 class Board:
@@ -19,6 +19,7 @@ class Board:
         Iris dataset can be found at:
         https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html
     """
+
     def __init__(self, size_of_board, mine_probability):
         """
         Initializes the Board with the specified size and mine probability.
@@ -76,26 +77,65 @@ class Board:
         """
         Assigns features from the Iris dataset to the cells on the board based on the cell type.
 
+        This method initializes the DataReader to load and split the augmented Iris dataset. It assigns
+        features from the test set to the board cells based on the cell type. Each cell on the board
+        is assigned a feature vector from the Iris dataset, ensuring that the features correspond
+        to the cell's type (0 for empty, 1 for mine, 2 for bomb).
+
         Returns:
             np.ndarray: A 3D array where each cell contains a feature vector from the Iris dataset.
         """
-        iris = datasets.load_iris()
 
-        data_label_0 = iris.data[iris.target == 0]
-        data_label_1 = iris.data[iris.target == 1]
-        data_label_2 = iris.data[iris.target == 2]
+        DataReader.initialize()
 
-        features = np.zeros((self.size_of_board, self.size_of_board, iris.data.shape[1]))
+        X_test, y_test = DataReader.get_test_data()
+
+        features = np.zeros((self.size_of_board, self.size_of_board, X_test.data.shape[1]))
+
+        # Indeksy cech dla każdej klasy
+        indices_0 = np.where(y_test == 0)[0]  # indeks całej próbki, zwraca krotkę
+        indices_1 = np.where(y_test == 1)[0]
+        indices_2 = np.where(y_test == 2)[0]
+
+        np.random.shuffle(indices_0)
+        np.random.shuffle(indices_1)
+        np.random.shuffle(indices_2)
+
+        feature_index_0 = 0
+        feature_index_1 = 0
+        feature_index_2 = 0
 
         for i in range(self.size_of_board):
             for j in range(self.size_of_board):
                 if self.array[i][j] == 0:
-                    random_index = np.random.randint(0, len(data_label_0))
-                    features[i, j, :] = data_label_0[random_index]
+                    features[i, j, :] = X_test[indices_0[feature_index_0]]
+                    feature_index_0 += 1
                 elif self.array[i][j] == 1:
-                    random_index = np.random.randint(0, len(data_label_1))
-                    features[i, j, :] = data_label_1[random_index]
-                else:
-                    random_index = np.random.randint(0, len(data_label_2))
-                    features[i, j, :] = data_label_2[random_index]
+                    features[i, j, :] = X_test[indices_1[feature_index_1]]
+                    feature_index_1 += 1
+                elif self.array[i][j] == 2:
+                    features[i, j, :] = X_test[indices_2[feature_index_2]]
+                    feature_index_2 += 1
+
         return features
+
+        # iris = datasets.load_iris()
+        #
+        # data_label_0 = iris.data[iris.target == 0]
+        # data_label_1 = iris.data[iris.target == 1]
+        # data_label_2 = iris.data[iris.target == 2]
+        #
+        # features = np.zeros((self.size_of_board, self.size_of_board, iris.data.shape[1]))
+        #
+        # for i in range(self.size_of_board):
+        #     for j in range(self.size_of_board):
+        #         if self.array[i][j] == 0:
+        #             random_index = np.random.randint(0, len(data_label_0))
+        #             features[i, j, :] = data_label_0[random_index]
+        #         elif self.array[i][j] == 1:
+        #             random_index = np.random.randint(0, len(data_label_1))
+        #             features[i, j, :] = data_label_1[random_index]
+        #         else:
+        #             random_index = np.random.randint(0, len(data_label_2))
+        #             features[i, j, :] = data_label_2[random_index]
+        # return features

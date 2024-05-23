@@ -1,9 +1,9 @@
 import random
 
 from aifield.soldier import Heavy, Sapper
-from src.aifield.board import Board
-from src.aifield.classifier_general import ClassifierGeneral
-from src.aifield.troops import Troops
+from aifield.board import Board
+from aifield.classifier_general import ClassifierGeneral
+from aifield.troops import Troops
 
 
 class Simulation:
@@ -76,7 +76,7 @@ class Simulation:
         for event in self.random_events_log:
             print(event)
 
-    def _manage_soldiers(self, label, x, y):
+    def _manage_soldiers(self, predicted_label, x, y):
         """
         Manages the actions of soldiers based on the presence of mines or bombs.
 
@@ -86,14 +86,15 @@ class Simulation:
             y (int): The y-coordinate of the cell.
         """
         special_soldier = self._special_soldiers.pop()  # It could be sapper or heavy, but there is an interface
-        if label == 1:
+        if predicted_label == 1:
             special_soldier.react_to_mine()
-        elif label == 2:
+        elif predicted_label == 2:
             special_soldier.react_to_bomb()
         if isinstance(special_soldier, Heavy):
             if special_soldier.health != 0:
-                self.random_events_log.append(f"Heavy saves us, HeavyStats: Health: {special_soldier.health},"
-                                              f" Armor: {special_soldier.armor}")
+                self.random_events_log.append(
+                    f"Heavy saves us, HeavyStats: Health: {special_soldier.health}," f" Armor: {special_soldier.armor}"
+                )
                 self._special_soldiers.append(special_soldier)
             else:
                 self.random_events_log.append("Heavy sacrificed himself and DIED.")
@@ -101,7 +102,7 @@ class Simulation:
         else:
             if special_soldier.health != 0:
                 self._special_soldiers.append(special_soldier)
-                if label == 1:
+                if predicted_label == 1:
                     self.disarmed_mines += 1
                     self.random_events_log.append(f"Sapper disarmed MINE!")
                     self.disarmed_locations.add((x, y))
@@ -123,7 +124,6 @@ class Simulation:
             x (int): The x-coordinate of the cell.
             y (int): The y-coordinate of the cell.
         """
-        self._classifier.train()
         predicted_label = self._classifier.predict(self.board.assigned_test_features[x, y])
         actual_label = self.board.array[x][y]
         is_mine = actual_label == 1
@@ -155,7 +155,8 @@ class Simulation:
                 self.survivors = max(0, self.survivors - casualties)
                 if self.survivors != 0:
                     self.random_events_log.append(
-                        f"Bad prediction (MINE) and there are no special forces available. Lost casualties: {casualties}")
+                        f"Bad prediction (MINE) and there are no special forces available. Lost casualties: {casualties}"
+                    )
                 else:
                     self.random_events_log.append("Bad prediction and ALL SOLDIERS ARE DEAD")
 
@@ -171,7 +172,8 @@ class Simulation:
                 self.survivors = max(0, self.survivors - casualties)
                 if self.survivors != 0:
                     self.random_events_log.append(
-                        f"Bad prediction (BOMB) and there are no special forces available. Lost casualties: {casualties}")
+                        f"Bad prediction (BOMB) and there are no special forces available. Lost casualties: {casualties}"
+                    )
                 else:
                     self.random_events_log.append("Bad prediction and ALL SOLDIERS ARE DEAD")
 
@@ -224,7 +226,6 @@ class Simulation:
 
         special_soldier = None
         if rnd_num == 1:
-
             if any(isinstance(soldier, Sapper) for soldier in self._special_soldiers):
                 for index, soldier in enumerate(self._special_soldiers):
                     if isinstance(soldier, Sapper):
@@ -254,6 +255,3 @@ class Simulation:
             recruits = random.randint(1, 3)
             self.survivors += recruits
             self.random_events_log.append(f"Recruited new soldiers: Gained: {recruits} soldiers.")
-
-
-

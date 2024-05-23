@@ -8,11 +8,8 @@ class Soldier(ABC):
 
     Attributes:
         health (int): The health of the soldier.
-
-    Methods:
-        react_to_mine(): Abstract method to define the reaction to a mine.
-        react_to_bomb(): Abstract method to define the reaction to a bomb.
     """
+
     def __init__(self, health=100):
         """
         Initializes a Soldier with the specified health.
@@ -44,12 +41,8 @@ class Heavy(Soldier):
     Attributes:
         health (int): The health of the soldier.
         armor (int): The armor of the soldier.
-
-    Methods:
-        react_to_mine(): Reacts to a mine by reducing armor or health.
-        react_to_bomb(): Reacts to a bomb by reducing armor or health.
-        react_to_enemy(): Reacts to an enemy by setting health and armor to 0.
     """
+
     def __init__(self, health):
         """
         Initializes a Heavy soldier with the specified health and default armor of 100.
@@ -63,6 +56,9 @@ class Heavy(Soldier):
     def react_to_mine(self):
         """
         Reacts to a mine by reducing armor if sufficient, otherwise reduces health.
+
+        Overrides:
+            Soldier.react_to_mine
         """
         if self.armor >= 50:
             self.armor -= 50
@@ -73,6 +69,9 @@ class Heavy(Soldier):
     def react_to_bomb(self):
         """
         Reacts to a bomb by significantly reducing armor or health.
+
+        Overrides:
+            Soldier.react_to_mine
         """
         if self.armor > 50:
             self.armor -= 100
@@ -96,12 +95,8 @@ class Sapper(Soldier):
     Attributes:
         health (int): The health of the soldier.
         disarming_kits (int): The number of disarming kits the soldier has.
-
-    Methods:
-        react_to_mine(): Reacts to a mine by using a disarming kit or reducing health.
-        react_to_bomb(): Reacts to a bomb by using two disarming kits or reducing health.
-        add_kit(): Adds a random number of disarming kits (1 or 2).
     """
+
     def __init__(self, health, disarming_kits):
         """
         Initializes a Sapper soldier with the specified health and disarming kits.
@@ -116,6 +111,9 @@ class Sapper(Soldier):
     def react_to_mine(self):
         """
         Reacts to a mine by using a disarming kit if available, otherwise reduces health to 0.
+
+        Overrides:
+            Soldier.react_to_mine
         """
         if self.disarming_kits > 0:
             self.disarming_kits -= 1
@@ -125,6 +123,9 @@ class Sapper(Soldier):
     def react_to_bomb(self):
         """
         Reacts to a bomb by using two disarming kits if available, otherwise reduces health to 0.
+
+        Overrides:
+            Soldier.react_to_mine
         """
         if self.disarming_kits >= 2:
             self.disarming_kits -= 2

@@ -1,9 +1,22 @@
-import sys
 import tracemalloc
-from PyQt5.QtGui import QBrush, QColor
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QComboBox, QSpinBox, QPushButton, \
-    QFormLayout, QHBoxLayout, QDoubleSpinBox, QTextEdit, QGraphicsRectItem, QGraphicsScene, QGraphicsView, QTabWidget
-from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal
+from PyQt5.QtGui import QBrush
+from PyQt5.QtWidgets import (
+    QWidget,
+    QVBoxLayout,
+    QLabel,
+    QLineEdit,
+    QComboBox,
+    QSpinBox,
+    QPushButton,
+    QFormLayout,
+    QDoubleSpinBox,
+    QTextEdit,
+    QGraphicsRectItem,
+    QGraphicsScene,
+    QGraphicsView,
+    QTabWidget,
+)
+from PyQt5.QtCore import Qt, QTimer
 
 from aifield.simulation import Simulation
 
@@ -64,19 +77,28 @@ class MainWindow(QWidget):
 
         # Classifier Name
         self.classifier_input = QComboBox()
-        classifiers = ["RandomForest", "GradientBoosting", "LogisticRegression", "KNN", "SVM", "DecisionTree",
-                       "DummyClassifier", "GaussianNB", "LinearSVC"]
+        classifiers = [
+            "RandomForest",
+            "GradientBoosting",
+            "LogisticRegression",
+            "KNN",
+            "SVM",
+            "DecisionTree",
+            "DummyClassifier",
+            "GaussianNB",
+            "LinearSVC",
+        ]
         self.classifier_input.addItems(classifiers)
         self.classifier_input.setCurrentText("KNN")
         self.formLayout.addRow(QLabel("Classifier"), self.classifier_input)
 
         # Mine Probability
         self.mine_probability_input = QDoubleSpinBox()
-        self.mine_probability_input.setRange(0.0, 1.0)
+        self.mine_probability_input.setRange(0.1, 0.9)
         self.mine_probability_input.setSingleStep(0.1)
         self.mine_probability_input.setValue(0.2)
         self.mine_probability_input.setDecimals(2)
-        self.formLayout.addRow(QLabel("Mine Probability (0 to 1)"), self.mine_probability_input)
+        self.formLayout.addRow(QLabel("Mine Probability [0.1 to 0.9]"), self.mine_probability_input)
 
         # Expected value label for Mine Probability
         self.mine_probability_label = QLabel("Expected value from 0 to 1")
@@ -215,12 +237,14 @@ class MainWindow(QWidget):
         """
         Displays the results of the simulation in the log.
         """
-        results = (f"Survivors: {self.simulation.survivors}/{self.simulation.amount_of_soldiers}\n"
-                   f"Amount of mines on board: {self.simulation.board.amount_of_mines}\n"
-                   f"Amount of bombs on board: {self.simulation.board.amount_of_bombs}\n"
-                   f"Disarmed Mines: {self.simulation.disarmed_mines}\n"
-                   f"Disarmed Bombs: {self.simulation.disarmed_bombs}\n"
-                   f"Remaining special soldiers: {len(self.simulation._special_soldiers)}\n"
-                   f"Classifier Accuracy - (metric : percentage of good predictions along the route): {self.simulation.accuracy * 100:.2f}%\n")
+        results = (
+            f"Survivors: {self.simulation.survivors}/{self.simulation.amount_of_soldiers}\n"
+            f"Amount of mines on board: {self.simulation.board.amount_of_mines}\n"
+            f"Amount of bombs on board: {self.simulation.board.amount_of_bombs}\n"
+            f"Disarmed Mines: {self.simulation.disarmed_mines}\n"
+            f"Disarmed Bombs: {self.simulation.disarmed_bombs}\n"
+            f"Remaining special soldiers: {len(self.simulation._special_soldiers)}\n"
+            f"Classifier Accuracy - (metric : percentage of good predictions along the route): {self.simulation.accuracy * 100:.2f}%\n"
+        )
         results += "\nRandom Events Log:\n" + "\n".join(self.simulation.random_events_log)
         self.simulation_output.setText(results)

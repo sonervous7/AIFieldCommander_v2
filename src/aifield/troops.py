@@ -40,4 +40,3 @@ class Troops:
         random.shuffle(soldiers)
 
         return soldiers
-
