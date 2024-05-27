@@ -90,7 +90,7 @@ class Board:
 
         X_test, y_test = DataReader.get_test_data()
 
-        features = np.zeros((self.size_of_board, self.size_of_board, X_test.data.shape[1]))
+        features = np.zeros((self.size_of_board, self.size_of_board, X_test.shape[1]))
 
         # Indeksy cech dla każdej klasy
         indices_0 = np.where(y_test == 0)[0]  # indeks całej próbki, zwraca krotkę
