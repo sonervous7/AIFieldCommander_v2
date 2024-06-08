@@ -74,10 +74,6 @@ class ClassifierGeneral:
         """
         X_train, y_train = DataReader.get_train_data()
         self.classifier.fit(X_train, y_train)
-        # iris = datasets.load_iris()
-        # X = iris.data
-        # y = iris.target
-        # self.classifier.fit(X, y)
 
     def predict(self, features):
         """

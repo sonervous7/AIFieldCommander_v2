@@ -118,24 +118,3 @@ class Board:
                     feature_index_2 += 1
 
         return features
-
-        # iris = datasets.load_iris()
-        #
-        # data_label_0 = iris.data[iris.target == 0]
-        # data_label_1 = iris.data[iris.target == 1]
-        # data_label_2 = iris.data[iris.target == 2]
-        #
-        # features = np.zeros((self.size_of_board, self.size_of_board, iris.data.shape[1]))
-        #
-        # for i in range(self.size_of_board):
-        #     for j in range(self.size_of_board):
-        #         if self.array[i][j] == 0:
-        #             random_index = np.random.randint(0, len(data_label_0))
-        #             features[i, j, :] = data_label_0[random_index]
-        #         elif self.array[i][j] == 1:
-        #             random_index = np.random.randint(0, len(data_label_1))
-        #             features[i, j, :] = data_label_1[random_index]
-        #         else:
-        #             random_index = np.random.randint(0, len(data_label_2))
-        #             features[i, j, :] = data_label_2[random_index]
-        # return features

@@ -32,7 +32,6 @@ class Troops:
         num_heavy = int(quantity * 0.03)  # 3% Heavy
         num_sapper = int(quantity * 0.02)  # 2% Sapper
 
-        # print(f"Creating {num_heavy} Heavy soldiers and {num_sapper} Sapper soldiers")  # Debug print
 
         soldiers.extend([Heavy(health=100) for _ in range(num_heavy)])
         soldiers.extend([Sapper(health=100, disarming_kits=1) for _ in range(num_sapper)])

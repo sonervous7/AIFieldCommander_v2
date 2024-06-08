@@ -94,7 +94,7 @@ class Sapper(Soldier):
 
     Attributes:
         health (int): The health of the soldier.
-        disarming_kits (int): The number of disarming kits the soldier has.
+        disarming_kits (int): The number of disarming kits the soldier has.name
     """
 
     def __init__(self, health, disarming_kits):
