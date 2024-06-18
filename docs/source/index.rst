@@ -10,6 +10,7 @@ Welcome to Ai Field Commander's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   main
    modules
 
 Indices and tables
