@@ -99,6 +99,7 @@ class Simulation:
             else:
                 self.random_events_log.append("Heavy sacrificed himself and DIED.")
                 self.survivors = max(0, self.survivors - 1)
+                self.random_events_log.append(f"Survivors: {self.survivors}/{self.amount_of_soldiers}")
         else:
             if special_soldier.health != 0:
                 self._special_soldiers.append(special_soldier)
@@ -113,8 +114,7 @@ class Simulation:
             else:
                 self.random_events_log.append("Sapper died during disarming...")
                 self.survivors = max(0, self.survivors - 1)
-
-        # print(f"Długość special forces --> {len(self._special_soldiers)}")
+                self.random_events_log.append(f"Survivors: {self.survivors}/{self.amount_of_soldiers}")
 
     def _update_game_stats(self, x, y):
         """
@@ -157,6 +157,7 @@ class Simulation:
                     self.random_events_log.append(
                         f"Bad prediction (MINE) and there are no special forces available. Lost casualties: {casualties}"
                     )
+                    self.random_events_log.append(f"Survivors: {self.survivors}/{self.amount_of_soldiers}")
                 else:
                     self.random_events_log.append("Bad prediction and ALL SOLDIERS ARE DEAD")
 
@@ -174,6 +175,7 @@ class Simulation:
                     self.random_events_log.append(
                         f"Bad prediction (BOMB) and there are no special forces available. Lost casualties: {casualties}"
                     )
+                    self.random_events_log.append(f"Survivors: {self.survivors}/{self.amount_of_soldiers}")
                 else:
                     self.random_events_log.append("Bad prediction and ALL SOLDIERS ARE DEAD")
 
@@ -224,6 +226,9 @@ class Simulation:
         """
         rnd_num = random.randint(1, 3)
 
+        if self.survivors == 0:
+            self._special_soldiers.clear()
+
         special_soldier = None
         if rnd_num == 1:
             if any(isinstance(soldier, Sapper) for soldier in self._special_soldiers):
@@ -246,12 +251,19 @@ class Simulation:
                         break
                 special_soldier.react_to_enemy()
                 self.random_events_log.append("Enemy unit encountered, HEAVY DIED SAVING US!")
+                self.survivors = max(0, self.survivors - 1)
+                self.random_events_log.append(f"Survivors: {self.survivors}/{self.amount_of_soldiers}")
             else:
-                casualties = random.randint(1, 5)
-                self.survivors = max(0, self.survivors - casualties)
-                self.random_events_log.append(f"Enemy unit encountered -> Lost: {casualties} casualties")
+                if self.survivors != 0:
+                    casualties = random.randint(1, 5)
+                    self.survivors = max(0, self.survivors - casualties)
+                    self.random_events_log.append(f"Enemy unit encountered -> Lost: {casualties} casualties")
+                    self.random_events_log.append(f"Survivors: {self.survivors}/{self.amount_of_soldiers}")
+                else:
+                    self.random_events_log.append("Enemy unit encountered, but all soldiers are dead.")
 
         else:
             recruits = random.randint(1, 3)
             self.survivors += recruits
             self.random_events_log.append(f"Recruited new soldiers: Gained: {recruits} soldiers.")
+            self.random_events_log.append(f"Survivors: {self.survivors}/{self.amount_of_soldiers}")

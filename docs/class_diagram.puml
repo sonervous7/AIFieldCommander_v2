@@ -94,7 +94,7 @@ Troops *-- Heavy : composition
 Troops *-- Sapper : composition
 Simulation *-- Board : composition
 Simulation *-- ClassifierGeneral : composition
-Simulation o-- Troops : aggregation
+Simulation *-- Troops : composition
 Simulation ..> Heavy : usage
 Simulation ..> Sapper : usage
 Board ..> DataReader : dependency
